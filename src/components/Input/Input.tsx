@@ -1,21 +1,19 @@
-import './Button.css';
+import './Input.css';
 
-export interface ButtonProps {
+export interface InputProps {
   label: string;
-  variant?: 'primary' | 'secondary' | 'critical' | 'success' | 'warning';
+  type?: 'text' | 'number' | 'email' | 'password';
   disabled?: boolean;
-  onClick?: () => void;
+  onChange?: (value: string) => void;
 }
 
-export function Button({ label, variant = 'primary', disabled = false, onClick }: ButtonProps) {
+export function Input({ label, type = 'text', disabled = false, onChange }: InputProps) {
   return (
-    <button
+    <input
       type="button"
-      className={`ui-button ui-button--${variant}`}
+      className={`ui-input ui-input--${type}`}
       disabled={disabled}
-      onClick={onClick}
-    >
-      {label}
-    </button>
+      onChange={(e) => onChange?.(e.target.value)}
+    />
   );
 }
